@@ -1,0 +1,44 @@
+namespace:
+  name: test
+
+service:
+  type: ClusterIP
+  svc:
+    http: 5000
+    # grpc: ToBeDefined
+    https: 443
+
+image:
+  repository: repository-k8s.sotaicg.com/test/test
+  tag: 'latest'
+  pullPolicy: Always
+
+replicaCount: 1
+
+imagePullSecrets:
+  - name: repository-sotaicg-secret
+    enabled: true
+
+imageCredentials:
+  registry: repository-k8s.sotaicg.com
+  username: trourest
+  password: Giangcoi8a1@
+  email: tgpham26@gmail.com
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi
+
+containerPort: 5000
+
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
